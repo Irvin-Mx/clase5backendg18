@@ -4,6 +4,11 @@ function construir(muro){
     return new Promise( (resolve,reject) =>{
         setTimeout( () => {
             muro.construido = true;
+
+            if(muro.construido ==! true){
+                reject('No se pudo constuir')
+            }
+
             resolve(muro);
         },500)
     })
@@ -15,6 +20,9 @@ function aplanar(muro){
     return new Promise(  (resolve,reject) => {
         setTimeout( ()=> {
             muro.aplanado = true;
+            if(muro.construido ==! true || muro.aplanado ==! true){
+                reject( new Error('No se pudo constuir'))
+            }
             resolve(muro)
         },400)
     })
@@ -26,6 +34,9 @@ function pintar(muro){
     return new Promise((resolve,reject) => {
         setTimeout( ()=> {
             muro.pintado = true;
+            if(muro.construido ==! true || muro.aplanado ==! true || muro.pintado ==! true){
+                reject('No se pudo constuir')
+            }
             resolve(muro)
         },300)
     })
